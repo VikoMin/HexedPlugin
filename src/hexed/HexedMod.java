@@ -320,6 +320,7 @@ public class HexedMod extends Plugin{
         Time.runTask(60f * 10f, () -> {
             //netServer.kickAll(KickReason.serverRestarting);
             //Time.runTask(5f, () -> System.exit(2));
+            data.clear();
         });
     }
 
