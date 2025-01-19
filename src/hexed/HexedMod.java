@@ -303,7 +303,7 @@ public class HexedMod extends Plugin{
 
     void endGame(){
         if(restarting) return;
-
+        interval = new Interval(5);
         restarting = true;
         Seq<Player> players = data.getLeaderboard();
         StringBuilder builder = new StringBuilder();
