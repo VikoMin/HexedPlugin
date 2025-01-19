@@ -171,7 +171,13 @@ public class HexedMod extends Plugin{
 
         Events.on(ProgressIncreaseEvent.class, event -> updateText(event.player));
 
-        Events.on(HexCaptureEvent.class, event -> updateText(event.player));
+        //Events.on(HexCaptureEvent.class, event -> updateText(event.player));
+        Events.on(HexCaptureEvent.class, event -> {
+            Hex hex = event.hex;
+            Player player = event.player;
+            world.tile(hex.x, hex.y).setNet(Blocks.coreShard, player.team(), 0); // 0 - поворот
+            updateText(player);
+        });
 
         Events.on(HexMoveEvent.class, event -> updateText(event.player));
 
