@@ -23,6 +23,8 @@ import mindustry.world.blocks.storage.*;
 import static arc.util.Log.*;
 import static mindustry.Vars.*;
 
+import hexed.HexedGenerator;
+
 public class HexedMod extends Plugin{
     //TODO: move these to a config file or Config
 
@@ -318,9 +320,18 @@ public class HexedMod extends Plugin{
 
         Log.info("&ly--SERVER RESTARTING--");
         Time.runTask(60f * 10f, () -> {
-            //netServer.kickAll(KickReason.serverRestarting);
-            //Time.runTask(5f, () -> System.exit(2));
-            data.clear();
+            netServer.kickAll(KickReason.serverRestarting);
+            net.closeServer();
+            data = new HexData();
+            logic.reset();
+            Log.info("Generating map...");
+            HexedGenerator generator = new HexedGenerator();
+            world.loadGenerator(Hex.size, Hex.size, generator);
+            data.initHexes(generator.getHex());
+            info("Map generated.");
+            state.rules = rules.copy();
+            logic.play();
+            netServer.openServer();
         });
     }
 
