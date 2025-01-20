@@ -338,6 +338,7 @@ public class HexedMod extends Plugin{
             state.rules = rules.copy();
             logic.play();
             netServer.openServer();
+            SULABLYAT();
         });
     }
 

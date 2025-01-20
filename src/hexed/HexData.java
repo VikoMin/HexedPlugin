@@ -18,7 +18,13 @@ public class HexData{
     private IntMap<Seq<Hex>> control = new IntMap<>();
     /** Data of specific teams. */
     private HexTeam[] teamData = new HexTeam[256];
-
+    public static void SULABLYAT(){
+        hexes = new Seq<>();
+        hexPos = new IntMap<>();
+        teamMap = new IntMap<>();
+        control = new IntMap<>();
+        teamData = new HexTeam[256];
+    }
     public void updateStats(){
         teamMap.clear();
         for(Player player : Groups.player){
