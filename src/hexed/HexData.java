@@ -9,15 +9,15 @@ import mindustry.gen.*;
 
 public class HexData{
     /** All hexes on the map. No order. */
-    private Seq<Hex> hexes = new Seq<>();
+    private static Seq<Hex> hexes = new Seq<>();
     /** Maps world pos -> hex */
-    private IntMap<Hex> hexPos = new IntMap<>();
+    private static IntMap<Hex> hexPos = new IntMap<>();
     /** Maps team ID -> player */
-    private IntMap<Player> teamMap = new IntMap<>();
+    private static IntMap<Player> teamMap = new IntMap<>();
     /** Maps team ID -> list of controlled hexes */
-    private IntMap<Seq<Hex>> control = new IntMap<>();
+    private static IntMap<Seq<Hex>> control = new IntMap<>();
     /** Data of specific teams. */
-    private HexTeam[] teamData = new HexTeam[256];
+    private static HexTeam[] teamData = new HexTeam[256];
     public static void SULABLYAT(){
         hexes = new Seq<>();
         hexPos = new IntMap<>();
