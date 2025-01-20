@@ -329,6 +329,7 @@ public class HexedMod extends Plugin{
         Time.runTask(60f * 10f, () -> {
             netServer.kickAll(KickReason.serverRestarting);
             net.closeServer();
+            SULABLYAT();
             data = new HexData();
             logic.reset();
             Log.info("Generating map...");
@@ -339,7 +340,6 @@ public class HexedMod extends Plugin{
             state.rules = rules.copy();
             logic.play();
             netServer.openServer();
-            SULABLYAT();
             restarting = false;
             counter = 0f;
         });
