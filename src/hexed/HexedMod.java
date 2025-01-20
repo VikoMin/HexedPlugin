@@ -340,6 +340,7 @@ public class HexedMod extends Plugin{
             logic.play();
             netServer.openServer();
             SULABLYAT();
+            restarting = false;
         });
     }
 
