@@ -341,6 +341,7 @@ public class HexedMod extends Plugin{
             netServer.openServer();
             SULABLYAT();
             restarting = false;
+            counter = 0f;
         });
     }
 
