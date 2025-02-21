@@ -143,7 +143,7 @@ public class HexedMod extends Plugin{
                 }
             }
         });
-        Events.on(GameOverEvent.class, event -> {endGame()});
+        Events.on(GameOverEvent.class, event -> {endGame();});
         
         Events.on(PlayerLeave.class, event -> {
             Timer.schedule(() -> {
