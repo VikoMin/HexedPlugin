@@ -146,10 +146,15 @@ public class HexedMod extends Plugin{
         Events.on(GameOverEvent.class, event -> {endGame();});
         
         Events.on(PlayerLeave.class, event -> {
+            boolean found = false;
             Timer.schedule(() -> {
-                boolean playerFound = Groups.player.any(player -> player.uuid().equals(event.player.uuid()));
-                if (!playerFound && active() && leavingPlayer.team() != Team.derelict) {
-                    killTiles(leavingPlayer.team());
+                Groups.player.each(p->{
+                    if(p.uuid().equals(event.player.uuid())) {
+                        found = true;
+                    }
+                });
+                if (!found && active() && event.player.team() != Team.derelict) {
+                    killTiles(event.player.team());
                 }
             }, 180);
         });
