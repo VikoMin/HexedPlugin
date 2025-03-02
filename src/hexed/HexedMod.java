@@ -53,7 +53,7 @@ public class HexedMod extends Plugin{
 
     private HexData data;
     private boolean restarting = false, registered = false;
-
+    HashMap<String, Team> teamsp = new HashMap<>();
     private Schematic baseSchematic;
     private double counter = 0f;
     private int lastMin;
@@ -152,7 +152,12 @@ public class HexedMod extends Plugin{
 
         Events.on(PlayerJoin.class, event -> {
             if(!active() || event.player.team() == Team.derelict) return;
-
+            if(teamsp.contains(event.player.uuid())) {
+                Team t = teamsp.get(event.player.uuid());
+                event.player.team(t);
+                teamsp.remove(event.player.uuid());
+                return;
+            }
             Seq<Hex> copy = data.hexes().copy();
             copy.shuffle();
             Hex hex = copy.find(h -> h.controller == null && h.spawnTime.get());
