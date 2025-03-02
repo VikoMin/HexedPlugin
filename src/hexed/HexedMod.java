@@ -143,11 +143,20 @@ public class HexedMod extends Plugin{
                 }
             }
         });
-
+        Events.on(GameOverEvent.class, event -> {endGame();});
+        
         Events.on(PlayerLeave.class, event -> {
-            if(active() && event.player.team() != Team.derelict){
-                killTiles(event.player.team());
-            }
+            boolean[] found = {false};
+            Timer.schedule(() -> {
+                Groups.player.each(p->{
+                    if(p.uuid().equals(event.player.uuid())) {
+                        found[0] = true;
+                    }
+                });
+                if (!found[0] && active() && event.player.team() != Team.derelict) {
+                    killTiles(event.player.team());
+                }
+            }, 180);
         });
 
         Events.on(PlayerJoin.class, event -> {
